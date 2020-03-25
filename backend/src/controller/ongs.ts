@@ -12,7 +12,7 @@ export const store = async (req: Request, res: Response): Promise<Response> => {
 
   const id = crypto.randomBytes(4).toString('HEX')
 
-  const ong = await Tables('ongs').insert({
+  await Tables('ongs').insert({
     id,
     name,
     email,
@@ -21,5 +21,5 @@ export const store = async (req: Request, res: Response): Promise<Response> => {
     uf
   })
 
-  return res.send(ong)
+  return res.send(id)
 }
