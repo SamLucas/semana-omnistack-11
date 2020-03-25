@@ -1,5 +1,5 @@
 // require('ts-node/register')
-import 'ts-node/register'
+import 'sucrase/register'
 // Update with your config settings.
 
 export default {

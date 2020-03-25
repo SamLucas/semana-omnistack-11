@@ -1,13 +1,15 @@
 import { Router } from 'express'
 
-import * as Ongs from '@/controller/ongs'
-import * as Incidents from '@/controller/incidentes'
+import Ongs from '@/controller/ongs'
+import Insidents from '@/controller/Insidents'
 
 const Routes = Router()
 
 Routes.get('/ongs', Ongs.index)
 Routes.post('/ongs', Ongs.store)
 
-Routes.post('/teste', Incidents.store)
+Routes.get('/incidents', Insidents.index)
+Routes.post('/incidents', Insidents.store)
+Routes.delete('/incidents/:id', Insidents.deletar)
 
 export default Routes

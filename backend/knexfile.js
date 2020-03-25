@@ -1,5 +1,5 @@
 // Update with your config settings.
-require("ts-node/register");
+require("sucrase/register");
 
 module.exports = {
   development: {
