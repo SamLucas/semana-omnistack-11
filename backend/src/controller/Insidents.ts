@@ -2,7 +2,16 @@ import { Response, Request } from 'express'
 import Tables from '@/database/connection'
 
 const index = async (req: Request, res: Response): Promise<Response> => {
-  const ongs = await Tables('incidents').select('*')
+  const { page = 1 } = req.query
+  const ongs = await Tables('incidents')
+    .join('ongs', 'ongs.id', '=', 'incidents.ong_id')
+    .limit(5)
+    .offset((page - 1) * 5)
+    .select(['incidents.*', 'ongs.name', 'ongs.email', 'ongs.whatsapp', 'ongs.city', 'ongs.uf'])
+
+  const [count] = await Tables('incidents').count()
+  res.header('X-Total-Count', count['count(*)'])
+
   return res.send(ongs)
 }
 
